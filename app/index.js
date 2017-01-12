@@ -1,14 +1,11 @@
-import css from './index.css';
-import AnimationSequence from './AnimationSequence'
+import css from './styles/index.css';
+import AnimationSequence from './modules/AnimationSequence'
+import Form from './modules/Form'
 
-document.getElementById("animationForm").onsubmit = function() {initAnimationSequence()};
-
-function initAnimationSequence(e) {
-  event.preventDefault()
-  let input = event.target.animationInput.value
-  let str = input.replace(/\'/g, '"')
-    .replace(/\s(\w+):/g, "\"$1\":")
-  let json = JSON.parse(str)
-  let sequence = new AnimationSequence('bar', json)
+document.getElementById("animationForm").onsubmit = function() {
+  event.preventDefault();
+  let form = new Form(event.target.animationInput.value)
+  let myJSON = form.parseFormData()
+  let sequence = new AnimationSequence('bar', myJSON)
   sequence.animate()
 }

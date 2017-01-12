@@ -4,27 +4,27 @@ class AnimationSequence {
     this.element = document.getElementById(element)
   }
 
-  animate () {
+  animate() {
     let previousDelay = 0
-    let delay = 0
-    let objects = null
     let styles = null
     for (let sequence of this.dataSet) {
-      delay = sequence[0] + previousDelay
-      objects = sequence.filter(this.isObject)
+      let delay = sequence[0] + previousDelay
+      let objects = sequence.filter(this.isObject)
       styles = this.formatStyles(objects)
-      this.updateDOM(delay, styles)
+      this.handleTimer(delay, styles)
       previousDelay = delay
     }
+    return styles
   }
 
-  updateDOM(delay, styles) {
-    setTimeout(() => {
+  handleTimer(delay, styles) {
+    let timerID = setTimeout(() => {
       console.log(delay);
       this.element.style = styles
     }, delay);
+    return timerID
   }
-  
+
 
   formatStyles(objects) {
     let final = ''
@@ -32,12 +32,12 @@ class AnimationSequence {
       let string = JSON.stringify(obj)
       string = string.replace(/\"/g, '').replace(/({|})/g, '')
       string += ';'
-      final += index < objects.length-1 ? string + ' ' : string;
+      final += index < objects.length - 1 ? string + ' ' : string;
     });
     return final;
   }
 
-  isObject (val) {
+  isObject(val) {
     return typeof val === 'object'
   }
 }

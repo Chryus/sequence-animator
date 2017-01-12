@@ -3,11 +3,12 @@
 # Welcome to Sequence Animator
 #
 # Get started:
-#
-# 1. npm install
-# 2. npm start
-# 3. visit http://localhost:8080/
-# 4. enter JSON styles and click submit
+# 
+# 1. clone repo
+# 2. npm install
+# 3. npm start
+# 4. visit http://localhost:8080/
+# 5. enter JSON styles and click submit
 #    
 #    Example input: [
 #      [100, { width: '10%' }],
@@ -20,8 +21,7 @@
 #
 # 5. Run specs via npm test
 # 
-# Sequence Animator is an npm + webpack + babel tool. Specs are via Jasmine with 
-# jsdom mocks.
+# Sequence Animator is an npm + webpack + babel tool. Specs are via # Jasmine with jsdom mocks.
 #
 #
 #----------------------------------------------------------------------------

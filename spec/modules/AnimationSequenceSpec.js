@@ -6,8 +6,8 @@ describe("AnimationSequence", () => {
   let JSONData;
 
   beforeEach(() => {
-    global.document = jsdom.jsdom('<html><body><div id="bar"></div></body></html>')
-    JSONData = [[100, { width: '10%' }], [200, { width: '20%' }]]
+    global.document = jsdom.jsdom('<html><body><div id="bar"></div></body></html>');
+    JSONData = [[100, { width: '10%' }], [200, { width: '20%' }]];
     animationSequence = new AnimationSequence('bar', JSONData);
   });
 
@@ -18,30 +18,14 @@ describe("AnimationSequence", () => {
 
   describe("formatStyles", () => {
     it("converts an array of objects to a string of css styles", () => {
-      let objects = [{ width: '10%' }, { background: 'blue' }] 
-      expect(animationSequence.formatStyles(objects)).toEqual("width:10%; background:blue;")
-    });
-  });
-
-  describe("isObject", () => {
-    it("evaluatues whether an input is an object", () => {
-      expect(animationSequence.isObject('foo')).toBeFalsey
-      expect(animationSequence.isObject({foo: 'bar'})).toBeTruthy
-      expect(animationSequence.isObject(100)).toBeFalsey
-    });
-  });
-
-  describe("handleTimer", () => {
-    it("sets a timer to update the styles of a DOM element after a specified number of milliseconds", () => {
-      let objects = [{ width: '10%' }, { background: 'blue' }]
-      let styles = animationSequence.formatStyles(objects)
-      expect(animationSequence.handleTimer(500, styles)._idleTimeout).toEqual(500)
+      let objects = [200, { width: '10%' }, { background: 'blue' }];
+      expect(animationSequence.formatStyles(objects)).toEqual("width:10%; background:blue;");
     });
   });
 
   describe("animate", () => {
-    it("updates the style of a an element, returning the final style set", () => {
-      expect(animationSequence.animate()).toEqual('width:20%;')
+    it("updates the style of a an element, returning to cumulative delay of the sequence", () => {
+      expect(animationSequence.animate()).toEqual(300);
     });
   });
 });
